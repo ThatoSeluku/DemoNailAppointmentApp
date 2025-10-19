@@ -149,6 +149,8 @@ const FEED_POSTS = [
   {
     id: 1,
     tech: "Maya Naidoo",
+    techUsername: "@mayanails",
+    avatar: "https://preview.redd.it/kin-avatar-photo-v0-cho9mf0dku9c1.png?width=800&auto=webp&s=37456304bddf3daee991abad5130fd7ba3aa7035",
     client: "Bongi T.",
     image: "https://i0.wp.com/farahfsalem.com/wp-content/uploads/2024/07/fall-nails.jpg?fit=1241%2C1235&ssl=1",
     techComment: "Fall vibes with these warm tones! 🍂✨",
@@ -159,6 +161,8 @@ const FEED_POSTS = [
   {
     id: 2,
     tech: "Thandi Mokoena",
+    techUsername: "@thandi_nails",
+    avatar: "https://www.thesun.co.uk/wp-content/uploads/2024/08/big-payout-recruiter-wins-12k-926591508.jpg?strip=all&w=960",
     client: "Mbali S.",
     image: "https://cdn.prod.website-files.com/630f3c750051ac8f612287b7/679c0dac5440595d5cd80d24_63d09faa181a3fa602226449_34%2520Nail%2520Art%2520Design%2520Ideas%2520%2526%2520Nails%2520Inspo%25202023%2520-%252010.jpeg",
     techComment: "French tip with a twist 🌸",
@@ -169,6 +173,8 @@ const FEED_POSTS = [
   {
     id: 3,
     tech: "Zanele Dlamini",
+    techUsername: "@zanele_glam",
+    avatar: "https://www.thetimes.com/imageserver/image/%2Fmethode%2Ftimes%2Fprod%2Fweb%2Fbin%2Fdcf09feb-b8db-49d5-a79f-c45e91c721b7.jpg?crop=720%2C480%2C0%2C116",
     client: "Palesa H.",
     image: "https://www.plapro.com/cdn/shop/articles/Delanie_Flowers_2.jpg?v=1695840995",
     techComment: "Floral elegance 🌺💅",
@@ -179,6 +185,8 @@ const FEED_POSTS = [
   {
     id: 4,
     tech: "Nokuthula Sithole",
+    techUsername: "@nokuthula_nails",
+    avatar: "https://wallpapers.com/images/hd/beautiful-black-woman-bathroom-selfie-e3aa2v8pp7urp2lt.jpg",
     client: "Tumi P.",
     image: "https://i.pinimg.com/736x/ce/ae/88/ceae88aac8fe824df7b6f4d3be4793a3.jpg",
     techComment: "Bold and beautiful! 💖✨",
@@ -189,6 +197,8 @@ const FEED_POSTS = [
   {
     id: 5,
     tech: "Precious Mahlangu",
+    techUsername: "@precious_nailart",
+    avatar: "https://pbs.twimg.com/media/F6y7G77XsAACDYx.jpg:large",
     client: "Dineo L.",
     image: "https://assets.teenvogue.com/photos/66d9d2e25ca4a443749d333f/master/w_1600%2Cc_limit/optical%2520illusion%2520nails.png",
     techComment: "Optical illusion magic! 👁️✨",
@@ -199,6 +209,8 @@ const FEED_POSTS = [
   {
     id: 6,
     tech: "Sibongile Khumalo",
+    techUsername: "@sibongile_beauty",
+    avatar: "https://www.shutterstock.com/image-photo/black-young-woman-smiling-doing-600nw-2485672619.jpg",
     client: "Neo V.",
     image: "https://cdn.shopify.com/s/files/1/2657/6552/files/Dazzle_Dry_Swirls_480x480.jpg?v=1685738486",
     techComment: "Swirls and dreams 🌀💅",
@@ -377,9 +389,9 @@ const styles = {
     marginBottom: '1rem',
   },
   feedPost: {
-    background: 'rgba(255, 255, 255, 0.1)',
+    background: 'rgba(255, 255, 255, 0.95)',
     backdropFilter: 'blur(10px)',
-    border: '1px solid rgba(255, 255, 255, 0.2)',
+    border: '1px solid rgba(255, 255, 255, 0.3)',
     borderRadius: '15px',
     padding: '0',
     marginBottom: '1.5rem',
@@ -387,6 +399,45 @@ const styles = {
   },
   feedContent: {
     padding: '1.5rem',
+    background: 'rgba(255, 255, 255, 0.95)',
+  },
+  feedHeader: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '0.8rem',
+    marginBottom: '1rem',
+  },
+  feedAvatar: {
+    width: '45px',
+    height: '45px',
+    borderRadius: '50%',
+    objectFit: 'cover',
+    border: '2px solid rgba(255, 255, 255, 0.5)',
+  },
+  feedUserInfo: {
+    flex: 1,
+  },
+  feedTechName: {
+    fontSize: '1rem',
+    fontWeight: '700',
+    color: '#1a1a1a',
+    margin: 0,
+  },
+  feedUsername: {
+    fontSize: '0.9rem',
+    color: '#666666',
+    margin: 0,
+  },
+  feedLabel: {
+    fontSize: '0.85rem',
+    fontWeight: '600',
+    color: '#1a1a1a',
+    margin: '0 0.3rem 0 0',
+  },
+  feedName: {
+    fontSize: '0.85rem',
+    color: '#666666',
+    margin: 0,
   },
   '@media (max-width: 768px)': {
     techGrid: {
@@ -841,23 +892,31 @@ function Discover() {
             <div key={post.id} style={styles.feedPost}>
               <img src={post.image} alt="Nails" style={styles.feedImage} />
               <div style={styles.feedContent}>
-                <div style={{ marginBottom: '1rem' }}>
-                  <p style={{ fontSize: '0.85rem', opacity: 0.7, margin: '0 0 0.3rem 0' }}>
-                    <strong>Tech:</strong> {post.tech}
-                  </p>
-                  <p style={{ fontSize: '0.85rem', opacity: 0.7, margin: '0 0 0.5rem 0' }}>
-                    <strong>Client:</strong> {post.client}
-                  </p>
+                <div style={styles.feedHeader}>
+                  <img src={post.avatar} alt={post.tech} style={styles.feedAvatar} />
+                  <div style={styles.feedUserInfo}>
+                    <p style={styles.feedTechName}>{post.tech}</p>
+                    <p style={styles.feedUsername}>{post.techUsername}</p>
+                  </div>
                 </div>
+
+                <div style={{ marginBottom: '1rem' }}>
+                  <div style={{ display: 'flex', alignItems: 'baseline', marginBottom: '0.5rem' }}>
+                    <span style={styles.feedLabel}>Client:</span>
+                    <span style={styles.feedName}>{post.client}</span>
+                  </div>
+                </div>
+
                 <div style={{ marginBottom: '0.8rem' }}>
-                  <p style={{ fontSize: '0.9rem', margin: '0 0 0.5rem 0', fontWeight: '500' }}>
+                  <p style={{ fontSize: '0.95rem', margin: '0 0 0.5rem 0', fontWeight: '500', color: '#1a1a1a' }}>
                     {post.techComment}
                   </p>
-                  <p style={{ fontSize: '0.85rem', opacity: 0.8, margin: 0, fontStyle: 'italic' }}>
+                  <p style={{ fontSize: '0.9rem', color: '#4a4a4a', margin: 0, fontStyle: 'italic' }}>
                     "{post.clientComment}"
                   </p>
                 </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.8rem', opacity: 0.7 }}>
+
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.85rem', color: '#666666' }}>
                   <span>❤️ {post.likes} likes</span>
                   <span>{post.timestamp}</span>
                 </div>
