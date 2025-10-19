@@ -891,33 +891,34 @@ function Home({ setPage }) {
 
         {/* Quick Questions - Always visible */}
         <div style={{ marginBottom: '2rem' }}>
-          <p style={{ fontSize: '0.9rem', color: '#666666', marginBottom: '1rem', fontWeight: '500' }}>
+          <p style={{ fontSize: '0.9rem', color: '#1a1a1a', marginBottom: '1rem', fontWeight: '500' }}>
             Quick questions:
           </p>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.7rem' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
             {quickQuestions.map((q) => (
               <button
                 key={q.id}
                 style={{
-                  background: 'white',
-                  border: '1px solid #e0e0e0',
-                  color: '#2d2d2d',
+                  background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                  border: 'none',
+                  color: 'white',
                   textAlign: 'left',
-                  padding: '1rem 1.2rem',
-                  fontSize: '0.9rem',
-                  borderRadius: '12px',
+                  padding: '0.75rem 1rem',
+                  fontSize: '0.85rem',
+                  borderRadius: '14px',
                   cursor: 'pointer',
                   transition: 'all 0.2s',
-                  boxShadow: '0 1px 3px rgba(0, 0, 0, 0.05)'
+                  boxShadow: '0 2px 8px rgba(102, 126, 234, 0.25)',
+                  fontWeight: '400'
                 }}
                 onClick={() => handleQuickQuestion(q.question, q.type)}
                 onMouseEnter={(e) => {
-                  e.target.style.background = '#f8f8f8';
-                  e.target.style.borderColor = '#c0c0c0';
+                  e.target.style.transform = 'translateY(-2px)';
+                  e.target.style.boxShadow = '0 4px 12px rgba(102, 126, 234, 0.35)';
                 }}
                 onMouseLeave={(e) => {
-                  e.target.style.background = 'white';
-                  e.target.style.borderColor = '#e0e0e0';
+                  e.target.style.transform = 'translateY(0)';
+                  e.target.style.boxShadow = '0 2px 8px rgba(102, 126, 234, 0.25)';
                 }}
               >
                 {q.question}
@@ -929,8 +930,9 @@ function Home({ setPage }) {
         {/* Input */}
         <div style={{
           display: 'flex',
-          gap: '0.7rem',
-          padding: '1rem',
+          alignItems: 'center',
+          gap: '0.5rem',
+          padding: '0.75rem',
           background: 'white',
           borderRadius: '16px',
           border: '1px solid #e0e0e0',
@@ -945,12 +947,13 @@ function Home({ setPage }) {
                 handleSendMessage();
               }
             }}
-            placeholder="Ask me anything about nail techs..."
+            placeholder="Ask me anything..."
             style={{
               flex: 1,
+              minWidth: 0,
               border: 'none',
               outline: 'none',
-              fontSize: '0.95rem',
+              fontSize: '0.9rem',
               color: '#2d2d2d',
               background: 'transparent',
               padding: '0.5rem'
@@ -962,11 +965,13 @@ function Home({ setPage }) {
               border: 'none',
               color: inputText.trim() ? 'white' : '#888888',
               cursor: inputText.trim() ? 'pointer' : 'not-allowed',
-              padding: '0.7rem 1.5rem',
+              padding: '0.6rem 1.2rem',
               borderRadius: '10px',
-              fontSize: '0.9rem',
+              fontSize: '0.85rem',
               fontWeight: '500',
-              transition: 'all 0.2s'
+              transition: 'all 0.2s',
+              flexShrink: 0,
+              whiteSpace: 'nowrap'
             }}
             disabled={!inputText.trim()}
             onClick={handleSendMessage}
@@ -1278,7 +1283,7 @@ function TechEarnings({ earnings }) {
                   {earning.date} • {earning.service}
                 </p>
               </div>
-              <p style={{ margin: 0, fontSize: '1.1rem', fontWeight: '600', color: '#22c55e' }}>
+              <p style={{ margin: 0, fontSize: '1.1rem', fontWeight: '600', color: '#1a1a1a' }}>
                 +R{earning.amount}
               </p>
             </div>
