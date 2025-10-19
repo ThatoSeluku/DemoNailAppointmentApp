@@ -8,7 +8,7 @@ const MOCK_TECHS = [
     location: "Sandton, JHB",
     rating: 4.9,
     bookings: 47,
-    avatar: "https://i.pravatar.cc/150?img=1",
+    avatar: "https://preview.redd.it/kin-avatar-photo-v0-cho9mf0dku9c1.png?width=800&auto=webp&s=37456304bddf3daee991abad5130fd7ba3aa7035",
     goal: { target: 15000, current: 12500, label: "Finishing payment for school" },
     pricing: "R250 - R450",
     reviews: [
@@ -25,7 +25,7 @@ const MOCK_TECHS = [
     location: "Rosebank, JHB",
     rating: 4.8,
     bookings: 52,
-    avatar: "https://i.pravatar.cc/150?img=5",
+    avatar: "https://www.thesun.co.uk/wp-content/uploads/2024/08/big-payout-recruiter-wins-12k-926591508.jpg?strip=all&w=960",
     goal: { target: 8000, current: 6400, label: "Concert tickets fund" },
     pricing: "R300 - R500",
     reviews: [
@@ -42,7 +42,7 @@ const MOCK_TECHS = [
     location: "Braamfontein, JHB",
     rating: 4.7,
     bookings: 38,
-    avatar: "https://i.pravatar.cc/150?img=9",
+    avatar: "https://www.thetimes.com/imageserver/image/%2Fmethode%2Ftimes%2Fprod%2Fweb%2Fbin%2Fdcf09feb-b8db-49d5-a79f-c45e91c721b7.jpg?crop=720%2C480%2C0%2C116",
     goal: { target: 20000, current: 15800, label: "Saving for a car" },
     pricing: "R280 - R420",
     reviews: [
@@ -59,7 +59,7 @@ const MOCK_TECHS = [
     location: "Melville, JHB",
     rating: 4.6,
     bookings: 29,
-    avatar: "https://i.pravatar.cc/150?img=10",
+    avatar: "https://wallpapers.com/images/hd/beautiful-black-woman-bathroom-selfie-e3aa2v8pp7urp2lt.jpg",
     goal: { target: 12000, current: 8500, label: "Moving to a new apartment" },
     pricing: "R220 - R380",
     reviews: [
@@ -76,7 +76,7 @@ const MOCK_TECHS = [
     location: "Fourways, JHB",
     rating: 4.5,
     bookings: 31,
-    avatar: "https://i.pravatar.cc/150?img=16",
+    avatar: "https://pbs.twimg.com/media/F6y7G77XsAACDYx.jpg:large",
     goal: { target: 10000, current: 7200, label: "Starting my own salon" },
     pricing: "R200 - R350",
     reviews: [
@@ -93,7 +93,7 @@ const MOCK_TECHS = [
     location: "Midrand, JHB",
     rating: 4.4,
     bookings: 24,
-    avatar: "https://i.pravatar.cc/150?img=20",
+    avatar: "https://www.shutterstock.com/image-photo/black-young-woman-smiling-doing-600nw-2485672619.jpg",
     goal: { target: 6000, current: 4100, label: "Buying new equipment" },
     pricing: "R180 - R320",
     reviews: [
@@ -365,7 +365,7 @@ const styles = {
   },
   progressFill: {
     height: '100%',
-    background: 'linear-gradient(90deg, #ffd700, #ffed4e)',
+    background: 'linear-gradient(90deg, #22c55e, #4ade80)',
     transition: 'width 1s ease-out',
   },
   comparisonImage: {
@@ -728,7 +728,7 @@ function GiftingModal({ onClose }) {
 function Header({ page, setPage, showGift, onGiftClick, viewMode, setViewMode }) {
   return (
     <header style={styles.header}>
-      <div style={styles.logo}>Salon Goals</div>
+      <div style={styles.logo}>Nailed-It!</div>
       <nav style={styles.nav}>
         {viewMode === 'client' ? (
           <>
@@ -766,24 +766,214 @@ function Header({ page, setPage, showGift, onGiftClick, viewMode, setViewMode })
 }
 
 function Home({ setPage }) {
-  return (
-    <div style={styles.containerNarrow}>
-      <div style={styles.card}>
-        <h1 style={{ fontSize: '2.5rem', marginBottom: '0.5rem' }}>Salon Goals</h1>
-        <p style={{ fontSize: '1rem', marginBottom: '2rem', opacity: 0.9 }}>
-          Find the best nail techs. Book. Rate. Flex.
-        </p>
-        <button style={{ ...styles.btn, width: '100%' }} onClick={() => setPage('discover')}>
-          Discover Techs
-        </button>
-      </div>
+  const [messages, setMessages] = useState([
+    {
+      id: 1,
+      type: 'ai',
+      text: 'Hi! I\'m Smart Mani-Pedi, your AI nail tech assistant. How can I help you find the perfect nail tech today?'
+    }
+  ]);
+  const [inputText, setInputText] = useState('');
 
-      <div style={styles.card}>
-        <h3 style={{ fontSize: '1.2rem', marginBottom: '1rem' }}>How It Works</h3>
-        <p style={{ opacity: 0.8 }}>1. Browse top-rated techs</p>
-        <p style={{ opacity: 0.8 }}>2. Book your appointment</p>
-        <p style={{ opacity: 0.8 }}>3. Get amazing nails</p>
-        <p style={{ opacity: 0.8 }}>4. Rate & review</p>
+  const quickQuestions = [
+    { id: 1, question: 'Where do I find the cheapest nail tech around?', type: 'cheapest' },
+    { id: 2, question: 'Which nail tech is free today?', type: 'available' },
+    { id: 3, question: 'Who are the highest rated nail techs around?', type: 'topRated' }
+  ];
+
+  const handleQuickQuestion = (question, type) => {
+    // Add user message
+    const userMessage = {
+      id: Date.now(),
+      type: 'user',
+      text: question
+    };
+    setMessages([...messages, userMessage]);
+
+    // Generate AI response based on question type
+    setTimeout(() => {
+      let aiResponse = '';
+
+      if (type === 'cheapest') {
+        aiResponse = `I found the most affordable nail techs near you:\n\n1. Sibongile Khumalo - R180-R320\n   📍 2.3km away in Midrand\n   ⭐ 4.4 rating\n\n2. Precious Mahlangu - R200-R350\n   📍 3.1km away in Fourways\n   ⭐ 4.5 rating\n\n3. Nokuthula Sithole - R220-R380\n   📍 1.8km away in Melville\n   ⭐ 4.6 rating`;
+      } else if (type === 'available') {
+        aiResponse = `Here are nail techs with availability today:\n\n1. Thandi Mokoena\n   📍 1.5km away in Rosebank\n   ⭐ 4.8 rating\n   🕐 Available: 2:00 PM, 4:30 PM\n\n2. Zanele Dlamini\n   📍 2.7km away in Braamfontein\n   ⭐ 4.7 rating\n   🕐 Available: 11:00 AM, 3:00 PM\n\n3. Precious Mahlangu\n   📍 3.1km away in Fourways\n   ⭐ 4.5 rating\n   🕐 Available: 1:00 PM, 5:00 PM`;
+      } else if (type === 'topRated') {
+        aiResponse = `Here are the highest rated nail techs in your area:\n\n1. Maya Naidoo - ⭐ 4.9\n   📍 0.9km away in Sandton\n   💰 R250-R450\n   🏆 47 bookings\n\n2. Thandi Mokoena - ⭐ 4.8\n   📍 1.5km away in Rosebank\n   💰 R300-R500\n   🏆 52 bookings\n\n3. Zanele Dlamini - ⭐ 4.7\n   📍 2.7km away in Braamfontein\n   💰 R280-R420\n   🏆 38 bookings`;
+      }
+
+      const aiMessage = {
+        id: Date.now() + 1,
+        type: 'ai',
+        text: aiResponse
+      };
+      setMessages(prev => [...prev, aiMessage]);
+    }, 800);
+  };
+
+  const handleSendMessage = () => {
+    if (!inputText.trim()) return;
+
+    // Add user message
+    const userMessage = {
+      id: Date.now(),
+      type: 'user',
+      text: inputText
+    };
+    setMessages([...messages, userMessage]);
+    setInputText('');
+
+    // Generate a generic AI response
+    setTimeout(() => {
+      const aiMessage = {
+        id: Date.now() + 1,
+        type: 'ai',
+        text: 'I understand you\'re looking for more information. While I can help with the quick questions above, for more detailed queries, please try using the Discover page to browse all our nail techs!'
+      };
+      setMessages(prev => [...prev, aiMessage]);
+    }, 800);
+  };
+
+  return (
+    <div style={styles.container}>
+      <div style={{
+        background: 'rgba(255, 255, 255, 0.5)',
+        backdropFilter: 'blur(10px)',
+        border: '1px solid rgba(255, 255, 255, 0.3)',
+        borderRadius: '20px',
+        padding: '2.5rem',
+        minHeight: '75vh',
+        display: 'flex',
+        flexDirection: 'column',
+        boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)'
+      }}>
+        {/* Header */}
+        <div style={{ borderBottom: '1px solid rgba(0, 0, 0, 0.1)', paddingBottom: '1.5rem', marginBottom: '2rem', textAlign: 'center' }}>
+          <h1 style={{ fontSize: '2rem', margin: '0 0 0.5rem 0', color: '#2d2d2d', fontWeight: '600' }}>
+            Smart Mani-Pedi
+          </h1>
+          <p style={{ fontSize: '0.8rem', color: '#666666', margin: 0, fontStyle: 'italic' }}>
+            AI can make mistakes. Please verify information.
+          </p>
+        </div>
+
+        {/* Messages */}
+        <div style={{ flex: 1, overflowY: 'auto', marginBottom: '2rem' }}>
+          {messages.map((msg) => (
+            <div
+              key={msg.id}
+              style={{
+                marginBottom: '1.5rem',
+                display: 'flex',
+                justifyContent: msg.type === 'user' ? 'flex-end' : 'flex-start'
+              }}
+            >
+              <div
+                style={{
+                  maxWidth: '75%',
+                  padding: '1rem 1.2rem',
+                  borderRadius: '18px',
+                  background: msg.type === 'user'
+                    ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
+                    : '#f1f1f1',
+                  color: msg.type === 'user' ? 'white' : '#2d2d2d',
+                  whiteSpace: 'pre-line',
+                  fontSize: '0.95rem',
+                  lineHeight: '1.5',
+                  boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)'
+                }}
+              >
+                {msg.text}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Quick Questions - Always visible */}
+        <div style={{ marginBottom: '2rem' }}>
+          <p style={{ fontSize: '0.9rem', color: '#666666', marginBottom: '1rem', fontWeight: '500' }}>
+            Quick questions:
+          </p>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.7rem' }}>
+            {quickQuestions.map((q) => (
+              <button
+                key={q.id}
+                style={{
+                  background: 'white',
+                  border: '1px solid #e0e0e0',
+                  color: '#2d2d2d',
+                  textAlign: 'left',
+                  padding: '1rem 1.2rem',
+                  fontSize: '0.9rem',
+                  borderRadius: '12px',
+                  cursor: 'pointer',
+                  transition: 'all 0.2s',
+                  boxShadow: '0 1px 3px rgba(0, 0, 0, 0.05)'
+                }}
+                onClick={() => handleQuickQuestion(q.question, q.type)}
+                onMouseEnter={(e) => {
+                  e.target.style.background = '#f8f8f8';
+                  e.target.style.borderColor = '#c0c0c0';
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.background = 'white';
+                  e.target.style.borderColor = '#e0e0e0';
+                }}
+              >
+                {q.question}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Input */}
+        <div style={{
+          display: 'flex',
+          gap: '0.7rem',
+          padding: '1rem',
+          background: 'white',
+          borderRadius: '16px',
+          border: '1px solid #e0e0e0',
+          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.05)'
+        }}>
+          <input
+            type="text"
+            value={inputText}
+            onChange={(e) => setInputText(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' && inputText.trim()) {
+                handleSendMessage();
+              }
+            }}
+            placeholder="Ask me anything about nail techs..."
+            style={{
+              flex: 1,
+              border: 'none',
+              outline: 'none',
+              fontSize: '0.95rem',
+              color: '#2d2d2d',
+              background: 'transparent',
+              padding: '0.5rem'
+            }}
+          />
+          <button
+            style={{
+              background: inputText.trim() ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' : '#d0d0d0',
+              border: 'none',
+              color: inputText.trim() ? 'white' : '#888888',
+              cursor: inputText.trim() ? 'pointer' : 'not-allowed',
+              padding: '0.7rem 1.5rem',
+              borderRadius: '10px',
+              fontSize: '0.9rem',
+              fontWeight: '500',
+              transition: 'all 0.2s'
+            }}
+            disabled={!inputText.trim()}
+            onClick={handleSendMessage}
+          >
+            Send
+          </button>
+        </div>
       </div>
     </div>
   );
@@ -864,9 +1054,24 @@ function Discover() {
         <div style={styles.techGrid}>
           {MOCK_TECHS.map((tech) => (
             <div key={tech.id} style={{ ...styles.card, cursor: 'pointer' }} onClick={() => handleTechClick(tech)}>
-              <h3 style={{ fontSize: '1.2rem', marginBottom: '0.3rem' }}>{tech.name}</h3>
-              <p style={{ fontSize: '0.85rem', opacity: 0.8, marginBottom: '0.5rem' }}>{tech.location}</p>
-              <div style={{ display: 'flex', gap: '1rem', fontSize: '0.8rem', flexWrap: 'wrap' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem' }}>
+                <img
+                  src={tech.avatar}
+                  alt={tech.name}
+                  style={{
+                    width: '60px',
+                    height: '60px',
+                    borderRadius: '50%',
+                    objectFit: 'cover',
+                    border: '2px solid rgba(255, 255, 255, 0.5)'
+                  }}
+                />
+                <div style={{ flex: 1 }}>
+                  <h3 style={{ fontSize: '1.2rem', margin: '0 0 0.3rem 0' }}>{tech.name}</h3>
+                  <p style={{ fontSize: '0.85rem', opacity: 0.8, margin: 0 }}>{tech.location}</p>
+                </div>
+              </div>
+              <div style={{ display: 'flex', gap: '1rem', fontSize: '0.8rem', flexWrap: 'wrap', marginBottom: '1rem' }}>
                 <span>⭐ {tech.rating}</span>
                 <span>📅 {tech.bookings} bookings</span>
                 <span>💰 {tech.pricing}</span>
@@ -1054,12 +1259,12 @@ function TechEarnings({ earnings }) {
         <h2 style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>Earnings</h2>
       </div>
 
-      <div style={{ ...styles.card, background: 'linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 237, 78, 0.2))' }}>
-        <p style={{ fontSize: '0.9rem', opacity: 0.9, marginBottom: '0.3rem' }}>Total Earnings</p>
-        <h2 style={{ fontSize: '2.5rem', margin: '0.5rem 0', color: '#ffd700' }}>
+      <div style={{ ...styles.card, background: 'rgba(255, 255, 255, 0.15)' }}>
+        <p style={{ fontSize: '0.9rem', color: 'white', marginBottom: '0.3rem' }}>Total Earnings</p>
+        <h2 style={{ fontSize: '2.5rem', margin: '0.5rem 0', color: '#1a1a1a' }}>
           R{totalEarnings.toLocaleString()}
         </h2>
-        <p style={{ fontSize: '0.85rem', opacity: 0.8 }}>This month: R{thisMonth.toLocaleString()}</p>
+        <p style={{ fontSize: '0.85rem', color: '#22c55e', fontWeight: '600' }}>This month: R{thisMonth.toLocaleString()}</p>
       </div>
 
       <div style={styles.card}>
@@ -1073,7 +1278,7 @@ function TechEarnings({ earnings }) {
                   {earning.date} • {earning.service}
                 </p>
               </div>
-              <p style={{ margin: 0, fontSize: '1.1rem', fontWeight: '600', color: '#ffd700' }}>
+              <p style={{ margin: 0, fontSize: '1.1rem', fontWeight: '600', color: '#22c55e' }}>
                 +R{earning.amount}
               </p>
             </div>
@@ -1112,20 +1317,21 @@ function TechGoals({ goals, setGoals }) {
     setShowAddGoal(false);
   };
 
-  const handleUpdateProgress = (goalId, amount) => {
-    setGoals(goals.map(g =>
-      g.id === goalId
-        ? { ...g, current: Math.min(g.current + amount, g.target) }
-        : g
-    ));
-  };
-
   return (
     <div style={styles.container}>
       <div style={styles.card}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <h2 style={{ fontSize: '1.5rem', margin: 0 }}>My Goals</h2>
-          <button style={styles.giftBtn} onClick={() => setShowAddGoal(true)}>
+          <button
+            style={{
+              ...styles.btn,
+              background: '#22c55e',
+              color: 'white',
+              fontWeight: '600',
+              border: '1px solid rgba(255, 255, 255, 0.3)'
+            }}
+            onClick={() => setShowAddGoal(true)}
+          >
             + New Goal
           </button>
         </div>
@@ -1164,19 +1370,6 @@ function TechGoals({ goals, setGoals }) {
               <p style={{ fontSize: '0.85rem', marginTop: '0.5rem', opacity: 0.8 }}>
                 R{goal.current.toLocaleString()} / R{goal.target.toLocaleString()} ({percentage}%)
               </p>
-
-              <div style={{ display: 'flex', gap: '0.5rem', marginTop: '1rem' }}>
-                {[50, 100, 250, 500].map(amount => (
-                  <button
-                    key={amount}
-                    style={{ ...styles.btn, flex: 1, fontSize: '0.8rem', padding: '0.5rem' }}
-                    onClick={() => handleUpdateProgress(goal.id, amount)}
-                    disabled={goal.current >= goal.target}
-                  >
-                    +R{amount}
-                  </button>
-                ))}
-              </div>
             </div>
           );
         })
@@ -1287,7 +1480,12 @@ function App() {
   }, [viewMode]);
 
   return (
-    <div style={styles.app}>
+    <div style={{
+      ...styles.app,
+      background: viewMode === 'tech'
+        ? 'linear-gradient(135deg, #1e3a8a 0%, #3b82f6 40%, #60a5fa 100%)'
+        : 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)'
+    }}>
       <Header
         page={page}
         setPage={setPage}
