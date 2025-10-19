@@ -1,0 +1,109 @@
+/* ===============================
+   GLOBAL STYLES — FULL-WIDTH FIX
+   =============================== */
+
+:root {
+  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.9);
+  background: linear-gradient(135deg, #ff9ff3 0%, #f368e0 40%, #ff6b6b 100%);
+  min-height: 100vh;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Global layout */
+body {
+  margin: 0;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, #ff9ff3 0%, #f368e0 40%, #ff6b6b 100%);
+  overflow-x: hidden;
+}
+
+/* Let the root container stretch full width */
+#root {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+/* Glassmorphic cards */
+.card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+}
+
+/* Text hierarchy */
+h1, h2, h3, h4 {
+  margin: 0;
+  color: #fff;
+  font-weight: 600;
+}
+p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.6;
+}
+
+/* Buttons */
+button {
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.3);
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+button:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255,255,255,0.5);
+}
+
+/* Anchors */
+a {
+  font-weight: 500;
+  color: #ffeaa7;
+  text-decoration: none;
+}
+a:hover {
+  color: #fdcb6e;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  #root {
+    padding: 0;
+  }
+  .card {
+    width: 100%;
+    padding: 1.5rem;
+  }
+}
+
+/* Light mode fallback */
+@media (prefers-color-scheme: light) {
+  :root, body {
+    background: linear-gradient(135deg, #ffd6f6 0%, #ffb2e0 40%, #ffa3b3 100%);
+    color: #222;
+  }
+}
